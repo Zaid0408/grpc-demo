@@ -1,0 +1,23 @@
+syntax="proto3";
+
+option java_package = "com.example.grpc";
+
+service UserService {
+    // Defining the api endpoint for the login. This will be exposed to the client
+    rpc login(GetUserRequest) returns (User);
+
+    // another api endpoint for the logout
+    rpc logout(Empty) returns (User);
+}
+
+message GetUserRequest {
+    string username = 1; // no need to specify the type, it will be inferred
+    string password = 2;
+}
+
+message User{
+    string responseMessage=1;
+    int32 responseCode=2;
+}
+
+message Empty {}
